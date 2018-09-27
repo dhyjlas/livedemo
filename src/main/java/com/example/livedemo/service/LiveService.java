@@ -18,7 +18,7 @@ public class LiveService {
     @Autowired
     private VideoDao videoDao;
 
-    public void live(String id, String stream) throws Exception {
+    public void live(String id, String stream, String type) throws Exception {
         LiveStream liveStream = null;
 
         //从数据库中查找视频
@@ -37,7 +37,7 @@ public class LiveService {
             //创建新的视频流
             liveStream = new LiveStream();
             liveStream.setNum(0);
-            liveStream.setUrl("rtmp://192.168.1.137:1935/live/");
+            liveStream.setUrl("rtmp://192.168.1.137:1935/" + type + "/");
             liveStream.setStream(stream);
             List<Video> videoList = new ArrayList<>();
             videoList.add(videoOptional.get());

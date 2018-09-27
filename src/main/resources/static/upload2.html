@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>upload</title>
+
+    <meta name="keywords" content="keyword1,keyword2,keyword3"></meta>
+    <meta name="description" content="this is my page"></meta>
+    <meta name="content-type" content="text/html; charset=UTF-8"></meta>
+</head>
+
+<body>
+<form enctype="multipart/form-data" method="post" action="/upload">
+    <p>类型：<select name="type">
+        <option value="2d" selected="selected">2d</option>
+        <option value="mobile_ud">mobile_ud</option>
+        <option value="mobile_lr">mobile_lr</option>
+    </select></p>
+    <p>视点：<input type="text" name="viewpoint"></p>
+    <p>描述：<textarea rows="4" name="context"></textarea></p>
+    <p><input type="file" name="file"/></p>
+    <p><input type="submit" value="上传"/></p>
+</form>
+</body>
+</html>

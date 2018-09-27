@@ -1,6 +1,7 @@
 package com.example.livedemo.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.example.livedemo.entity.LiveStream;
 import com.example.livedemo.service.LiveService;
 import com.example.livedemo.utils.LiveList;
 import org.slf4j.Logger;
@@ -24,9 +25,27 @@ public class LiveController {
      * @return
      * @throws Exception
      */
+//    @RequestMapping("test")
+//    public String test(@RequestParam String id, @RequestParam String live) throws Exception {
+//        liveService.live(id, live, "live");
+//
+//        return "success";
+//    }
+
+    /**
+     * 提交视频
+     * @param id
+     * @param live
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("test")
-    public String test(@RequestParam String id, @RequestParam String live) throws Exception {
-        liveService.live(id, live);
+    public String test(@RequestParam String id, @RequestParam String live, @RequestParam String type) throws Exception {
+        if(!"hls".equals(type) && !"live".equals(type)){
+            type = "live";
+        }
+
+        liveService.live(id, live, type);
 
         return "success";
     }
@@ -42,7 +61,9 @@ public class LiveController {
      */
     @RequestMapping("stop")
     public String stop(){
-        LiveList.getLiveStreamList().get(0).getProcess().destroy();
+        for(LiveStream liveStream : LiveList.getLiveStreamList()){
+            liveStream.getProcess().destroy();
+        }
         LiveList.getLiveStreamList().clear();
 
         return "stop";
